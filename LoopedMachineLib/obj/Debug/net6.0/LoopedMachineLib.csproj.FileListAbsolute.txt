@@ -1,0 +1,12 @@
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\bin\Debug\net6.0\LoopedMachineLib.deps.json
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\bin\Debug\net6.0\LoopedMachineLib.dll
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\bin\Debug\net6.0\LoopedMachineLib.pdb
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\LoopedMachineLib.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\LoopedMachineLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\LoopedMachineLib.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\LoopedMachineLib.AssemblyInfo.cs
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\LoopedMachineLib.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\LoopedMachineLib.dll
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\refint\LoopedMachineLib.dll
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\LoopedMachineLib.pdb
+C:\Users\user\Desktop\яп\TelegramBot\LoopedMachineLib\obj\Debug\net6.0\ref\LoopedMachineLib.dll

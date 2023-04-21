@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramBot", "TelegramBot\TelegramBot.csproj", "{D30A2B31-AF68-4714-BBBF-04F1FA7F7D4D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoopedMachineLib", "LoopedMachineLib\LoopedMachineLib.csproj", "{2DB2FD95-4884-4000-A4A0-C81DE9B35694}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiniteStatetEntropyCodingLib", "FiniteStatetEntropyCodingLib\FiniteStatetEntropyCodingLib.csproj", "{403B38AC-E010-4E78-9883-88D52CA23F90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D30A2B31-AF68-4714-BBBF-04F1FA7F7D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30A2B31-AF68-4714-BBBF-04F1FA7F7D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30A2B31-AF68-4714-BBBF-04F1FA7F7D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D30A2B31-AF68-4714-BBBF-04F1FA7F7D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB2FD95-4884-4000-A4A0-C81DE9B35694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB2FD95-4884-4000-A4A0-C81DE9B35694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB2FD95-4884-4000-A4A0-C81DE9B35694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB2FD95-4884-4000-A4A0-C81DE9B35694}.Release|Any CPU.Build.0 = Release|Any CPU
+		{403B38AC-E010-4E78-9883-88D52CA23F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{403B38AC-E010-4E78-9883-88D52CA23F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{403B38AC-E010-4E78-9883-88D52CA23F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{403B38AC-E010-4E78-9883-88D52CA23F90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4965FAC-FE58-4CC2-A84A-D5F1AF57B3DA}
+	EndGlobalSection
+EndGlobal
