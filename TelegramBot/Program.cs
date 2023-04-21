@@ -16,7 +16,7 @@ namespace TelegramBotExperiments
     class Program
     {
         static string cur_command = "/start";
-        static ITelegramBotClient bot = new TelegramBotClient("6021886646:AAFWLsPBkV6Ay50NXmAHcC3l73-FfgNAENo");
+        static ITelegramBotClient bot = new TelegramBotClient(System.IO.File.ReadAllText("token2.txt"));
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             // Некоторые действия
