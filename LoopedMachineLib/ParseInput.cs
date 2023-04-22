@@ -83,6 +83,7 @@ namespace LoopedMachineLib
             return tf.Count == m;
         }
 
+
         public static string[] GetTF(string s)
         {
             var tf = new string[0];
@@ -106,5 +107,15 @@ namespace LoopedMachineLib
             return Regex.Match(s, @"\b(.){1,}\b").Value;
         }
 
+
+        public static bool CheckTFs(string[] tf, int count)
+        {
+            var arr = new string[0];
+            foreach(var s in tf)
+            {
+                arr = arr.Concat(Regex.Matches(s, @"\bq([1-9]{1,}[0-9]){0,}\b").Select(m => m.Groups[1].Value)).ToArray();
+            }
+            return arr.Distinct().Count() == count;
+        }
     }
 }

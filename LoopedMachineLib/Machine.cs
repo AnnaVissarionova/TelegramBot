@@ -94,24 +94,32 @@ namespace LoopedMachineLib
 
         public (int, int, string) OneStep(int q, string text, int cur_pos)
         {
-            text = CheckText(text);
-            (int next_cond, int next_pos) = (-1, -1);
-            var cur_char = text[cur_pos];
-            var dict = q_table.GetValueOrDefault(q);
-            if (dict.GetValueOrDefault(cur_char) == null)
+            try
             {
-                return (-1, -1, text); //сигнал об окончании работы
+                text = CheckText(text);
+                (int next_cond, int next_pos) = (-1, -1);
+                var cur_char = text[cur_pos];
+                var dict = q_table.GetValueOrDefault(q);
+                if (dict.GetValueOrDefault(cur_char) == null)
+                {
+                    return (-1, -1, text); //сигнал об окончании работы
+                }
+                text = text[..cur_pos] + (char)dict.GetValueOrDefault(cur_char)[1] + text[(cur_pos + 1)..];
+                next_cond = dict.GetValueOrDefault(cur_char)[0];
+                next_pos = cur_pos + dict.GetValueOrDefault(cur_char)[2];
+
+
+                if (next_pos == -1) { next_pos = length - 1; }
+                if (next_pos == length) { next_pos = 0; }
+
+                steps_count++;
+                return (next_cond, next_pos, text);
             }
-            text = text[..cur_pos] + (char)dict.GetValueOrDefault(cur_char)[1] + text[(cur_pos + 1)..];
-            next_cond = dict.GetValueOrDefault(cur_char)[0];
-            next_pos = cur_pos + dict.GetValueOrDefault(cur_char)[2];
-
-
-            if (next_pos == -1) { next_pos = length - 1; }
-            if (next_pos == length) { next_pos = 0; }
-
-            steps_count++;
-            return (next_cond, next_pos, text);
+            catch (Exception ex)
+            {
+                return (-404, -404, text);
+            }
+            
         }
 
         //проверяет на наличие комбинации, которая зацикливает машину на одном месте 
@@ -134,44 +142,58 @@ namespace LoopedMachineLib
 
         public int RunMachine(int q, string text, int cur_pos)
         {
-            text = CheckText(text);
-            if (CheckForCycleInOnePosition().Item1)
+            try
             {
-                Console.WriteLine($"------> Машина содержит зацикливающую комбинацию {CheckForCycleInOnePosition().Item2}");
-                return -1;
+                text = CheckText(text);
+                if (CheckForCycleInOnePosition().Item1)
+                {
+                    Console.WriteLine($"------> Машина содержит зацикливающую комбинацию {CheckForCycleInOnePosition().Item2}");
+                    return -1;
+                }
+                else
+                {
+                    while (q != -1)
+                    {
+                        if (CheckCobminations(comb) && steps_count > length)
+                        {
+                            Console.WriteLine("------> Машина прошла все комбинации и зациклилась");
+                            return -1;
+                        }
+
+                        (int q_prev, int pos_prev, char prev) = (q, cur_pos, text[cur_pos]);
+                        (q, cur_pos, text) = OneStep(q, text, cur_pos);
+                        if (q >= 0)
+                        {
+                            UpdateComb(q_prev, prev);
+                        }
+
+                    }
+                    if (q == -1)
+                    {
+                        Console.WriteLine("------> Машина не зациклилась");
+                        return 1;
+
+                    }
+                    else if (q == -404)
+                    {
+                        Console.WriteLine("ArgumentNullException");
+                        return -404;
+                    }
+                    return 0;
+                }
             }
-            else
+            catch (Exception e)
             {
-                while (q != -1)
-                {
-                    if (CheckCobminations(comb) && steps_count > length)
-                    {
-                        Console.WriteLine("------> Машина прошла все комбинации и зациклилась");
-                        return -1;
-                    }
-
-                    (int q_prev, int pos_prev, char prev) = (q, cur_pos, text[cur_pos]);
-                    (q, cur_pos, text) = OneStep(q, text, cur_pos);
-                    if (q != -1)
-                    {
-                        UpdateComb(q_prev, prev);
-                    }
-
-                }
-                if (q == -1)
-                {
-                    Console.WriteLine("------> Машина не зациклилась");
-                    return 1;
-
-                }
-                return 0;
+                Console.WriteLine("ArgumentNullException");
+                return -404;
             }
-
+     
         }
 
         //обновляет количество выполненных комбинаций
         void UpdateComb(int q, char c)
         {
+            
             var arr = new int[5];
             arr[0] = q;
             arr[1] = c;
@@ -197,6 +219,7 @@ namespace LoopedMachineLib
 
         string CheckText(string text)
         {
+            text = text.Trim();
             while (text.Length < length)
             {
                 text = text + "^";

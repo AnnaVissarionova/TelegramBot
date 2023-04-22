@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -16,8 +17,15 @@ namespace FiniteStatetEntropyCodingLib
             var ss = s.Split('\n');
             if (ss.Length == 3)
             {
-                if (Regex.IsMatch(ss[0], @"\b[1-9]{1,}[0-9]{0,}\b") && Regex.IsMatch(ss[1], @"([A-Z]:[1-9]{1,}[0-9]{0,}){1,}") && ss[2].Length > 0)
+                if (Regex.IsMatch(ss[0], @"\b[1-9]{1,}[0-9]{0,}\b") && Regex.Matches(ss[1], @"([A-Z]:[1-9]{1,}[0-9]{0,}){1,}").Count == int.Parse(ss[0]) && ss[2].Length > 0)
                 {
+                    if (!CheckSum(Regex.Matches(ss[1], @":([1-9]{1,}[0-9]{0,})\b").Select(m => m.Groups[1].Value).ToArray())) {
+                        return (false, "Сумма частот не степень двойки.");
+                    }
+                    if (!CheckChars(ss[2], ss[1]))
+                    {
+                        return (false, "В тексте содержатся символы не из указанного алфавита.");
+                    }
                     return (true, "");
                 }
                 return (false, "Неверный формат данных.");
@@ -33,11 +41,39 @@ namespace FiniteStatetEntropyCodingLib
                 if (Regex.IsMatch(ss[0], @"\b[1-9]{1,}[0-9]{0,}\b") && Regex.IsMatch(ss[1], @"([A-Z]:[1-9]{1,}[0-9]{0,}){1,}") &&
                     Regex.IsMatch(ss[2], @"\b[0-1]{1,}\b") && Regex.IsMatch(ss[3], @"\b[1-9]{1,}[0-9]{0,}\b"))
                 {
+                    if (!CheckSum(Regex.Matches(ss[1], @":([1-9]{1,}[0-9]{0,})\b").Select(m => m.Groups[1].Value).ToArray()))
+                    {
+                        return (false, "Сумма частот не степень двойки.");
+                    }
+                    if (!CheckChars(ss[2], ss[1]))
+                    {
+                        return (false, "В тексте содержатся символы не из указанного алфавита.");
+                    }
                     return (true, "");
                 }
                 return (false, "Неверный формат данных.");
             }
             return (false, "Неверный формат данных.");
+        }
+
+        static bool CheckSum(string[] arr)
+        {
+            Console.WriteLine($"sum = {arr.Select(x => int.TryParse(x, out int y) ? y : 0).Sum()}");
+            return CodingChars.IsPowOfTwo(arr.Select(x => int.TryParse(x, out int y) ? y : 0).Sum());
+        }
+
+        static bool CheckChars(string text, string ss)
+        {
+            var chars = Regex.Matches(ss, @"[A-Z]").Select(m => m.Value).ToArray();
+            var real = text.Trim().Distinct();
+            foreach(var r in real)
+            {
+                if (!chars.Contains(r + ""))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static (int, string) CodingProg(string s)

@@ -65,7 +65,11 @@ namespace TelegramBotExperiments
                         {
                             await botClient.SendTextMessageAsync(message.Chat, "*Машина зацикливается.*", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         }
-                        else
+                        else if (res == 0)
+                        {
+                            await botClient.SendTextMessageAsync(message.Chat, "*Неправильные данные о количестве состояний машины*\nПовторите попытку.", Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                        }
+                        else 
                         {
                             await botClient.SendTextMessageAsync(message.Chat, "*Что-то пошло не так, повторите попытку.*", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         }
@@ -150,6 +154,11 @@ namespace TelegramBotExperiments
         static int CheckMachine(string s)
         {
             (int q, string[] tf, string text, int length) = ParseInput.Parse(s);
+            if (!ParseInput.CheckTFs(tf, q))
+            {
+                return 0;
+            }
+
             var mch = new Machine(q, tf, length);
 
             (int nc, int np) = (1, 0);

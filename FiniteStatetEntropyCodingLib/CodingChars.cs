@@ -296,7 +296,7 @@ namespace FiniteStatetEntropyCodingLib
             return res;
         }
 
-        static bool IsPowOfTwo(int n)
+        public static bool IsPowOfTwo(int n)
         {
             return (Math.Round(Math.Ceiling(Math.Log2(n))) == Math.Round(Math.Floor(Math.Log2(n))));
         }
