@@ -45,10 +45,6 @@ namespace FiniteStatetEntropyCodingLib
                     {
                         return (false, "Сумма частот не степень двойки.");
                     }
-                    if (!CheckChars(ss[2], ss[1]))
-                    {
-                        return (false, "В тексте содержатся символы не из указанного алфавита.");
-                    }
                     return (true, "");
                 }
                 return (false, "Неверный формат данных.");
