@@ -288,6 +288,7 @@ namespace FiniteStatetEntropyCodingLib
                         {
                             res[j] += last / (count - i);
                         }
+                        break;
                     }
                     i--;
                 }
