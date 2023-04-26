@@ -114,10 +114,10 @@ namespace TelegramBotExperiments
 
                     if (message.Text.ToLower() == "/fse_decoding")
                     {
-                        await botClient.SendTextMessageAsync(message.Chat, "*Введите данные для рассжатия в виде :* \n" +
+                        await botClient.SendTextMessageAsync(message.Chat, "*Введите данные для разжатия в виде :* \n" +
                        "n - _количество cимволов в алфавите_ \n" +
                        "A:3 B:4 C:1 - _символы алфавита и их частоты (сумма частот - степень двойки)_ \n" +
-                       "000100111 - _битовая строка, которую необходимо расжать_ \n" +
+                       "000100111 - _битовая строка, которую необходимо разжать_ \n" +
                        "q - _финальное состояние_", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         
                     }
@@ -139,7 +139,7 @@ namespace TelegramBotExperiments
                 else
                 {
                     Console.WriteLine(cur_command);
-                    await botClient.SendTextMessageAsync(message.Chat, "О-о-у....");
+                    await botClient.SendTextMessageAsync(message.Chat, "О-о-у....Что-то пошло не так...");
                 }
 
             }
